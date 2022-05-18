@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{board/layout/basic}">
 
 <th:block layout:fragment="title">
   <title>view</title>
@@ -40,8 +41,8 @@
 
         <div class="btn_wrap text-center">
             <a th:href="@{/board/list}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
-            <a th:href="@{/board/write( idx=${idx} )}" class="btn btn-primary waves-effect waves-light">수정하기</a>
-        <button type="button" class="btn btn-danger waves-effect waves-light" th:onclick="deleteBoard([[ ${idx} ]])">삭제하기</button>
+            <a th:href="@{/board/write( idx=${board.idx} )}" class="btn btn-primary waves-effect waves-light">수정하기</a>
+        <button type="button" class="btn btn-danger waves-effect waves-light" th:onclick="deleteBoard([[ ${board.idx} ]])">삭제하기</button>
       </div>
 
   </div>

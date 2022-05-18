@@ -2,6 +2,7 @@ package com.example.test3.service;
 
 import com.example.test3.domain.BoardDto;
 import com.example.test3.mapper.BoardMapper;
+import com.example.test3.paging.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class BoardServiceImpl implements BoardService {
         int queryResult = 0;
 
         if (params.getIdx() == null) {
-            queryResult = boardMapper.updateBoard(params);
+            queryResult = boardMapper.insertBoard(params);
         } else {
             queryResult = boardMapper.updateBoard(params);
         }
@@ -45,13 +46,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDto> getBoardList() {
+    public List<BoardDto> getBoardList(Criteria criteria) {
         List<BoardDto> boardList = Collections.emptyList();
 
-        int boardTotalCount = boardMapper.selectBoardTotalCount();
+        int boardTotalCount = boardMapper.selectBoardTotalCount(criteria);
 
         if (boardTotalCount > 0) {
-            boardList = boardMapper.selectBoardList();
+            boardList = boardMapper.selectBoardList(criteria);
         }
 
         return boardList;

@@ -1,15 +1,13 @@
 package com.example.test3.controller;
 
 import com.example.test3.domain.BoardDto;
+import com.example.test3.paging.Criteria;
 import com.example.test3.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,8 +43,8 @@ public class BoardController {
     }
 
     @GetMapping(value = "/board/list")
-    public String openBoardList(Model model) {
-        List<BoardDto> boardList = boardService.getBoardList();
+    public String openBoardList(@ModelAttribute("criteria") Criteria criteria,Model model) {
+        List<BoardDto> boardList = boardService.getBoardList(criteria);
         model.addAttribute("boardList", boardList);
         return "/board/list";
     }
