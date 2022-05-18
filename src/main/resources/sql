@@ -1,0 +1,13 @@
+CREATE TYPE  delete_yn AS ENUM('Y','N');
+
+
+CREATE TABLE t_board(
+ 	idx serial PRIMARY KEY,
+    content varchar (300) not null,
+	title varchar (100) not null,
+	writer varchar (50) not null,
+    dy delete_yn DEFAULT 'N',
+    insert_time TIMESTAMP NOT NULL DEFAULT NOW(),
+    update_time TIMESTAMP NULL,
+    delete_time TIMESTAMP NULL
+	)
