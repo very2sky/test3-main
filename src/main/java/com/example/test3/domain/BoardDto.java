@@ -9,15 +9,12 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class BoardDto {
+public class BoardDto extends CommonDto{
     private Long idx;// pk
     private String title;// 제목
     private String content;//내용
     private String writer;
-    private String dy;
-    private LocalDateTime insertTime;
-    private LocalDateTime updateTime;
-    private LocalDateTime deleteTime;
+
 
     @Override
     public String toString() {
@@ -26,10 +23,6 @@ public class BoardDto {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", writer='" + writer + '\'' +
-                ", dy='" + dy + '\'' +
-                ", insertTime=" + insertTime +
-                ", updateTime=" + updateTime +
-                ", deleteTime=" + deleteTime +
                 '}';
     }
 }

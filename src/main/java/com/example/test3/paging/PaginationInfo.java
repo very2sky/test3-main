@@ -1,6 +1,7 @@
 package com.example.test3.paging;
 
 
+import com.example.test3.domain.Criteria;
 import lombok.Getter;
 import lombok.Setter;
 

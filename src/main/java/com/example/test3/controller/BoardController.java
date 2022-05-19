@@ -1,10 +1,8 @@
 package com.example.test3.controller;
 
 import com.example.test3.domain.BoardDto;
-import com.example.test3.paging.Criteria;
 import com.example.test3.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +32,7 @@ public class BoardController {
         return "/board/write";
     }
 
-    @PostMapping(value = "/board/register")//*************************************************************************** update
+    @PostMapping(value = "/board/register")
     public String registerBoard(final BoardDto params) {
         System.out.println("djqepdlxm");
         System.out.println(params);
@@ -43,8 +41,8 @@ public class BoardController {
     }
 
     @GetMapping(value = "/board/list")
-    public String openBoardList(@ModelAttribute("criteria") Criteria criteria,Model model) {
-        List<BoardDto> boardList = boardService.getBoardList(criteria);
+    public String openBoardList(@ModelAttribute("params") BoardDto params,Model model) {
+        List<BoardDto> boardList = boardService.getBoardList(params);
         model.addAttribute("boardList", boardList);
         return "/board/list";
     }

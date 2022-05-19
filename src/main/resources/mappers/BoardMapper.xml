@@ -64,7 +64,7 @@
         idx = #{idx}
     </update>
 
-    <select id="selectBoardList" parameterType="Criteria" resultType="BoardDto">
+    <select id="selectBoardList" parameterType="BoardDto" resultType="BoardDto">
         SELECT
             idx,
             <include refid="boardColumns" />
@@ -75,15 +75,20 @@
         ORDER BY
             idx DESC,
             insert_time DESC
+        LIMIT
+        #{recordsPerPage}
+        OFFSET
+            #{paginationInfo.firstRecordIndex}
+
     </select>
 
-    <select id="selectBoardTotalCount" parameterType="Criteria" resultType="int">
+    <select id="selectBoardTotalCount" parameterType="BoardDto" resultType="int">
         SELECT
-        COUNT(*)
+          COUNT(*)
         FROM
-        t_board
+             t_board
         WHERE
-        dy = 'N'
+            dy = 'N'
     </select>
 
 </mapper>
