@@ -13,7 +13,7 @@
         id
         ,pw
         ,email
-        ,adress
+        ,address
         value
     </insert>
 </mapper>

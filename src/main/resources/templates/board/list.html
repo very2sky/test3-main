@@ -9,14 +9,10 @@
   <title>This page is a list page</title>
 </th:block>
 
-<th:block layout:fragment="search">
-  <form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
-    <input type="search" placeholder="Search..." class="input-search">
-    <button class="mdi mdi-magnify button-search" type="submit">
-      <i class="fa fa-search" aria-hidden="true"></i>
-    </button>
-  </form>
+<th:block layout:fragment="paging">
+  <nav th:replace="board/fragments/common :: search"></nav>
 </th:block>
+
 
 <th:block layout:fragment="content">
   <div class="table-responsive clearfix">
@@ -31,9 +27,8 @@
       </thead>
       <tbody>
       <tr th:if="${not #lists.isEmpty( boardList )}" th:each="row : ${boardList}">
-              <td class="text-left">
-                 <a th:href="@{/board/view( idx=${row.idx} )}" th:text="${row.idx}"></a>
-              </td>
+        <td class="text-left">
+          <a th:href="|@{/board/view}${params.makeQueryString(params.currentPageNo)}&idx=${row.idx}|" th:text="${row.idx}"></a>
               <td th:text="${row.title}"></td>
               <td th:text="${row.writer}"></td>
               <td th:text="${#temporals.format( row.insertTime, 'yyyy-MM-dd' )}"></td>
@@ -61,6 +56,27 @@
 			function movePage(uri, queryString) {
 				location.href = uri + queryString;
 			}
+			function searchBoard(form){
+	            <!--빌때 있을때-->
+	            if(isEmpty(form) ==true){
+	                  var searchKeyword = document.getElementById("mainSearchKeyword");
+	                  if(isEmpty(searchKeyword.value) == true){
+	                    alert("plz insert keyword");
+	                    searchKeyword.focus();
+	                    return false;
+
+	                }
+	                form = document.getElementById("searchForm");
+	                form.searchKeyword.value = searchKeyword.value;
+	                form.submit();
+	            }
+	            if(isEmpty(form.searchKeyword.value) ==true){
+	              alert("plz keyword");
+	              form.searchKeyword.focus();
+	              return false;
+	            }
+			}
+
 
 			/*]]>*/
 		</script>

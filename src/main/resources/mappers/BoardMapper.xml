@@ -66,29 +66,25 @@
 
     <select id="selectBoardList" parameterType="BoardDto" resultType="BoardDto">
         SELECT
-            idx,
-            <include refid="boardColumns" />
+        idx ,<include refid="boardColumns" />
         FROM
-            t_board
+        t_board
         WHERE
-            dy = 'N'
+        dy = 'N'
+        <include refid="CommonMapper.search" /> <!--현재 유형없음-->
         ORDER BY
-            idx DESC,
-            insert_time DESC
-        LIMIT
-        #{recordsPerPage}
-        OFFSET
-            #{paginationInfo.firstRecordIndex}
-
+        idx DESC,
+        insert_time DESC
+        <include refid="CommonMapper.paging" />
     </select>
 
     <select id="selectBoardTotalCount" parameterType="BoardDto" resultType="int">
         SELECT
-          COUNT(*)
+        COUNT(*)
         FROM
-             t_board
+        t_board
         WHERE
-            dy = 'N'
+        dy = 'N'
+        <include refid="CommonMapper.search" />
     </select>
-
 </mapper>

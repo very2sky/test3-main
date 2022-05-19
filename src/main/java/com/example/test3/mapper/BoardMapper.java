@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper        // Mapper라고 선언함
+@Mapper
 public interface BoardMapper{
 
     public int insertBoard(BoardDto params);

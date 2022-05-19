@@ -20,3 +20,26 @@
         </li>
     </ul>
 </nav>
+  <!-- ********************************************검색***************************************-->
+<div th:fragment="search" id="adv-search" class="input-group">
+    <input type="hidden" id="mainSearchKeyword" class="form-control" th:value="${params.searchKeyword}" plcaeholder="keyowrd." />
+    <div class="input-group-btn">
+        <div class="btn-group" role="group">
+                    <!--/* 검색 form */-->
+                    <form id="searchForm" th:action="@{/board/list}" method="get" th:onsubmit="return searchBoard(this)" class="form-horizontal" role="form">
+                        <!-- /* 현재 페이지 번호, 페이지당 출력할 데이터 개수, 페이지 하단에 출력할 페이지 개수 Hidden 파라미터 */ -->
+                        <input type="hidden" name="currentPageNo" value="1" />
+                        <input type="hidden" name="recordsPerPage" th:value="${params.recordsPerPage}" />
+                        <input type="hidden" name="pageSize" th:value="${params.pageSize}" />
+
+                        <div class="form-group">
+                            <label for="contain">키워드</label>
+                            <input type="text" name="searchKeyword" class="form-control" th:value="${params.searchKeyword}" />
+                        </div>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    </form>
+        </div>
+    </div>
+</div>
+
+</html>
